@@ -11,7 +11,6 @@ namespace V1
         // aNew Matrix mit der n+1-ten Generation
         void CalcNextGeneration(bool[,] aOld, bool[,] aNew)
         {
-            int a = 1;
             m_CC = aOld; // sicherstellen, daﬂ m_CC=aOld ist
             /*
                 Any live cell with fewer than two live neighbours dies, as if by underpopulation.
