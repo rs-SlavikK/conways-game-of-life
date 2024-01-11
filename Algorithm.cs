@@ -23,28 +23,28 @@ namespace V1
             {
                 for (int y = 0; y < MAX_CELLS; y++)
                 {
-                    if ((m_CC[x, y] == true) && GetNeighbourCount(x, y) < 2)
+                    if ((aOld[x, y] == true) && GetNeighbourCount(x, y) < 2)
                     {
                         aNew[x, y] = false;
                         continue;
                     }
 
 
-                    else if ((m_CC[x, y] == true) && (GetNeighbourCount(x, y) == 2 || GetNeighbourCount(x, y) == 3))
+                    else if ((aOld[x, y] == true) && (GetNeighbourCount(x, y) == 2 || GetNeighbourCount(x, y) == 3))
                     {
                         aNew[x, y] = true;
                         continue;
                     }
 
 
-                    else if ((m_CC[x, y] == true) && GetNeighbourCount(x, y) > 3)
+                    else if ((aOld[x, y] == true) && GetNeighbourCount(x, y) > 3)
                     {
                         aNew[x, y] = false;
                         continue;
                     }
 
 
-                    else if ((m_CC[x, y] == false) && GetNeighbourCount(x, y) == 3)
+                    else if ((aOld[x, y] == false) && GetNeighbourCount(x, y) == 3)
                     {
                         aNew[x, y] = true;
                         continue;
