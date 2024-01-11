@@ -11,31 +11,33 @@ namespace V1
     public partial class LifeForm : Form
     {
         #region CONSTANTS
-        const int MAX_CELLS = 50;
+        const int MAX_CELLS = 55;
         const int CELL_SIZE = 15;
         const int C_M = 2; // CellMargin
         #endregion
     
         // 2 Matritzen zur Verwaltung der n'ten und der n+1'ten Generation
-        bool[,] m_CA = new bool[MAX_CELLS + 1, MAX_CELLS + 1];
-        bool[,] m_CB = new bool[MAX_CELLS + 1, MAX_CELLS + 1];
+        bool[,] m_CA = new bool[MAX_CELLS, MAX_CELLS];
+        bool[,] m_CB = new bool[MAX_CELLS, MAX_CELLS];
         bool[,] m_CC; // current ( active ) CellArray n'te Generation
 
-        Pen _gridPen = new Pen(Color.Black);
-        SolidBrush _cellBrush = new SolidBrush(Color.DeepSkyBlue);
+        Pen _gridPen = new Pen(Color.DarkGreen);
+        SolidBrush _backBrush = new SolidBrush(Color.Black);
+        SolidBrush _cellBrush = new SolidBrush(Color.DarkGreen);
 
         public LifeForm()
         {
             InitializeComponent();
             timer1.Interval = 100;
             // zum Testen ein paar Zellen setzen
-            m_CA[3, 3] = true; m_CA[3, 4] = true; m_CA[3, 5] = true;
-            m_CA[4, 3] = true; m_CA[4, 4] = true; m_CA[4, 5] = true;
+            //m_CA[3, 3] = true; m_CA[3, 4] = true; m_CA[3, 5] = true;
+            //m_CA[4, 3] = true; m_CA[4, 4] = true; m_CA[4, 5] = true;
             m_CC = m_CA;
         }
 
         private void OnPanelPaint(object sender, PaintEventArgs e)
-        {          
+        {
+            DrawBackground(e.Graphics);
             DrawCells(e.Graphics);
             DrawGrid(e.Graphics);
         }
@@ -46,6 +48,11 @@ namespace V1
             if (e.Button == MouseButtons.Left)
                 TurnCellOnOff(e.X, e.Y, e);
             m_panel.Invalidate();
+        }
+
+        void DrawBackground(Graphics gr)
+        {
+            gr.FillRectangle(_backBrush, 0, 0, MAX_CELLS * CELL_SIZE, MAX_CELLS * CELL_SIZE);
         }
 
         // Cells des aktiven Arrays (m_CC) zeichnen
@@ -104,6 +111,7 @@ namespace V1
         private void OnTimer(object sender, EventArgs e)
         {
             OnStepButton(null, null);
+            m_panel.Invalidate();
         }
 
         private void OnClearButton(object sender, EventArgs e)
