@@ -23,7 +23,7 @@ namespace V1
 
         Pen _gridPen = new Pen(Color.DarkGreen);
         SolidBrush _backBrush = new SolidBrush(Color.Black);
-        SolidBrush _cellBrush = new SolidBrush(Color.DarkGreen);
+        SolidBrush _cellBrush = new SolidBrush(Color.ForestGreen);
 
         public LifeForm()
         {
