@@ -119,5 +119,12 @@ namespace V1
             ClearCells(m_CA); ClearCells(m_CB);
             m_panel.Invalidate();
         }
+
+        private void m_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            /*if (e.Button == MouseButtons.Left)
+                TurnCellOnOff(e.X, e.Y, e);
+            m_panel.Invalidate();*/
+        }
     }
 }
